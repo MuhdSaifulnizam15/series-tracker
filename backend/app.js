@@ -4,6 +4,8 @@ const path = require('path');
 const cors = require('cors');
 require('dotenv').config();
 
+const adminRoute = require('./routes/admin');
+
 const app = express();
 
 app.use(cors());
@@ -15,7 +17,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use('/static', express.static(path.join(`${__dirname}/public`)));
 
-app.get('/', (req, res) => res.send('Home Route'));
+app.use('/', adminRoute);
 
 const port = process.env.PORT || 8080;
 
