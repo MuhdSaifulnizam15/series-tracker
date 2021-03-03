@@ -3,26 +3,31 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Add Series</title>
+        <% if(editing){ %>Edit Series<% } else { %>Add Series<% } %>
     </head>
     <body>
-        <h1>Add Series</h1>
+        <h1><% if(editing){ %>Edit Series<% } else { %>Add Series<% } %></h1>
 
         <form method="POST" action="/add-series">
             <div>
                 <label>Name</label>
-                <input type="text" name="name" required />
+                <input type="text" name="name" value="<% if(editing){ %><%= series.name %><% } %>" required />
             </div>
             <div>
                 <label>Image</label>
-                <input type="text" name="image" required />
+                <input type="text" name="image" value="<% if(editing){ %><%= series.image %><% } %>" required />
             </div>
             <div>
                 <label>Description</label>
-                <input type="text" name="description" required />
+                <input type="text" name="description" value="<% if(editing){ %><%= series.description %><% } %>" required />
             </div>
+            <% if(editing){ %>
+                <div>
+                    <input type="hidden" name="seriesId" value="<%= series.id %>" />
+                </div>
+            <% } %>
             <div>
-                <button type="submit">Add Series</button>
+                <button type="submit"><% if(editing){ %>Edit Series<% } else { %>Add Series<% } %></button>
             </div>
         </form>
     </body>
